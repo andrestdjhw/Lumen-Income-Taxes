@@ -1,9 +1,8 @@
 /*
-  Theme Name: Brad&rsquo;s Boilerplate Theme Tailwind
-  Author: Brad
-  Author URI: https://github.com/LearnWebCode
+  Theme Name: Lumen Income Taxes
+  Description: Tema a medida para Lumen Income Taxes (React + Tailwind).
+  Version: 1.0.0
+  Text Domain: lumen_income_taxes
 */
 
-/* This file only exists for the sake of WordPress recognizing our theme / theme name etc... */
-
-/* We do not include CSS here and also WordPress will not load this file on the front-end */
+/* Este archivo solo existe para que WordPress reconozca el tema. Los estilos se compilan en build/index.css */
