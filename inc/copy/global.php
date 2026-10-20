@@ -1,0 +1,72 @@
+<?php
+
+// Textos globales: navegación, botones, footer, formulario y chatbot.
+// Las claves nav.*, cta.*, footer.*, form.*, chat.* y a11y.* también se envían a React.
+// Copy propuesto por 828 Marketing Solutions, pendiente de aprobación de la clienta.
+
+return array(
+  'a11y.skip' => array('en' => 'Skip to content', 'es' => 'Saltar al contenido'),
+
+  'nav.home'           => array('en' => 'Home', 'es' => 'Inicio'),
+  'nav.individual'     => array('en' => 'Individual Taxes', 'es' => 'Impuestos Personales'),
+  'nav.self_employed'  => array('en' => 'Self-Employed', 'es' => 'Independientes'),
+  'nav.small_business' => array('en' => 'Small Business', 'es' => 'Pequeños Negocios'),
+  'nav.process'        => array('en' => 'Our Process', 'es' => 'Nuestro Proceso'),
+  'nav.about'          => array('en' => 'About', 'es' => 'Nosotros'),
+  'nav.faq'            => array('en' => 'FAQs', 'es' => 'Preguntas Frecuentes'),
+  'nav.contact'        => array('en' => 'Contact', 'es' => 'Contacto'),
+  'nav.main'           => array('en' => 'Main navigation', 'es' => 'Navegación principal'),
+  'nav.menu'           => array('en' => 'Open menu', 'es' => 'Abrir menú'),
+  'nav.close'          => array('en' => 'Close menu', 'es' => 'Cerrar menú'),
+  'nav.language'       => array('en' => 'Choose language', 'es' => 'Elegir idioma'),
+
+  'cta.book'       => array('en' => 'Book an Appointment', 'es' => 'Agendar una cita'),
+  'cta.call'       => array('en' => 'Call %s', 'es' => 'Llamar al %s'),
+  'cta.call_short' => array('en' => 'Call', 'es' => 'Llamar'),
+  'cta.directions' => array('en' => 'Get directions', 'es' => 'Cómo llegar'),
+
+  'footer.tagline'  => array('en' => 'Bilingual tax preparation in San Antonio, TX.', 'es' => 'Preparación de impuestos bilingüe en San Antonio, TX.'),
+  'footer.services' => array('en' => 'Services', 'es' => 'Servicios'),
+  'footer.company'  => array('en' => 'Lumen', 'es' => 'Lumen'),
+  'footer.visit'    => array('en' => 'Visit', 'es' => 'Visítenos'),
+  'footer.contact'  => array('en' => 'Contact', 'es' => 'Contacto'),
+  'footer.note'     => array('en' => 'Appointments recommended. Please confirm office hours before visiting.', 'es' => 'Se recomienda agendar cita. Confirme el horario antes de visitarnos.'),
+  'footer.rights'   => array('en' => 'All rights reserved.', 'es' => 'Todos los derechos reservados.'),
+  'footer.privacy'  => array('en' => 'Privacy Policy', 'es' => 'Política de privacidad'),
+  'footer.legal'    => array('en' => 'Legal', 'es' => 'Legal'),
+
+  'form.title'               => array('en' => 'Request a Callback or Appointment', 'es' => 'Solicite una llamada o una cita'),
+  'form.name'                => array('en' => 'Full name', 'es' => 'Nombre completo'),
+  'form.phone'               => array('en' => 'Phone number', 'es' => 'Teléfono'),
+  'form.email'               => array('en' => 'Email (optional)', 'es' => 'Correo electrónico (opcional)'),
+  'form.language'            => array('en' => 'Preferred language', 'es' => 'Idioma preferido'),
+  'form.language_en'         => array('en' => 'English', 'es' => 'Inglés'),
+  'form.language_es'         => array('en' => 'Spanish', 'es' => 'Español'),
+  'form.interest'            => array('en' => 'I’m interested in', 'es' => 'Me interesa'),
+  'form.interest_individual' => array('en' => 'Individual Taxes', 'es' => 'Impuestos personales'),
+  'form.interest_business'   => array('en' => 'Business Taxes', 'es' => 'Impuestos de negocio'),
+  'form.interest_irs'        => array('en' => 'IRS Notice', 'es' => 'Carta del IRS'),
+  'form.interest_other'      => array('en' => 'Other', 'es' => 'Otro'),
+  'form.message'             => array('en' => 'Message (optional)', 'es' => 'Mensaje (opcional)'),
+  'form.message_hint'        => array('en' => 'Briefly tell us how we can help.', 'es' => 'Cuéntenos brevemente en qué podemos ayudarle.'),
+  'form.consent'             => array('en' => 'By submitting, you agree to be contacted about your inquiry. Do not include sensitive tax or banking information.', 'es' => 'Al enviar el formulario, acepta que le contactemos con respecto a su consulta. No incluya información fiscal o bancaria sensible.'),
+  'form.submit'              => array('en' => 'Request an Appointment', 'es' => 'Solicitar una cita'),
+  'form.sending'             => array('en' => 'Sending…', 'es' => 'Enviando…'),
+  'form.success_title'       => array('en' => 'Thank you! We received your request.', 'es' => '¡Gracias! Recibimos su solicitud.'),
+  'form.success_text'        => array('en' => 'Our team will contact you about your inquiry. Please do not send tax documents by email.', 'es' => 'Nuestro equipo se comunicará con usted sobre su consulta. Por favor no envíe documentos fiscales por correo electrónico.'),
+  'form.error_generic'       => array('en' => 'Something went wrong. Please try again or call us.', 'es' => 'Algo salió mal. Intente de nuevo o llámenos.'),
+  'form.error_required'      => array('en' => 'Please complete the required fields.', 'es' => 'Complete los campos obligatorios.'),
+  'form.error_invalid_phone' => array('en' => 'Please enter a valid phone number.', 'es' => 'Ingrese un número de teléfono válido.'),
+  'form.error_invalid_email' => array('en' => 'Please enter a valid email address.', 'es' => 'Ingrese un correo electrónico válido.'),
+  'form.error_consent'       => array('en' => 'Please accept to be contacted about your inquiry.', 'es' => 'Acepte que le contactemos con respecto a su consulta.'),
+  'form.error_sensitive'     => array('en' => 'Please remove sensitive information, such as Social Security numbers, from your message.', 'es' => 'Elimine de su mensaje la información sensible, como números de Seguro Social.'),
+  'form.error_rate_limited'  => array('en' => 'Too many requests. Please call us instead.', 'es' => 'Demasiadas solicitudes. Por favor llámenos.'),
+
+  'chat.title'    => array('en' => 'Need help getting started?', 'es' => '¿Necesita ayuda para comenzar?'),
+  'chat.greeting' => array('en' => 'Hi! How can we help you today?', 'es' => '¡Hola! ¿En qué podemos ayudarle hoy?'),
+  'chat.faq'      => array('en' => 'Read common questions', 'es' => 'Ver preguntas frecuentes'),
+  'chat.message'  => array('en' => 'Send us a message', 'es' => 'Envíenos un mensaje'),
+  'chat.note'     => array('en' => 'Please don’t share sensitive information here.', 'es' => 'Por favor no comparta información sensible aquí.'),
+  'chat.open'     => array('en' => 'Open help chat', 'es' => 'Abrir chat de ayuda'),
+  'chat.close'    => array('en' => 'Close help chat', 'es' => 'Cerrar chat de ayuda'),
+);

@@ -2,7 +2,7 @@
 
 get_header(); ?>
 
-<main class="max-w-4xl mx-auto px-4">
+<main id="main" class="max-w-4xl mx-auto px-4">
   <div class="prose max-w-full">
     <?php if (have_posts()) {
       while(have_posts()) {
