@@ -6,7 +6,7 @@ get_header(); ?>
 <main id="main">
   <?php while (have_posts()) {
     the_post(); ?>
-    <section class="bg-brand-50">
+    <section class="bg-paper">
       <div class="container-site py-14">
         <h1 class="text-4xl font-bold"><?php the_title(); ?></h1>
       </div>

@@ -30,7 +30,7 @@ function lumen_t($key) {
 
 // Escapa el texto y convierte *palabra* en un resaltado de color de marca.
 function lumen_format($text) {
-  return preg_replace('/\*(.+?)\*/', '<span class="text-brand-600">$1</span>', esc_html($text));
+  return preg_replace('/\*(.+?)\*/', '<span class="text-cianotipo">$1</span>', esc_html($text));
 }
 
 function lumen_e($key) {

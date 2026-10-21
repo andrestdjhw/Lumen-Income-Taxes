@@ -8,6 +8,9 @@ return array(
   'a11y.skip' => array('en' => 'Skip to content', 'es' => 'Saltar al contenido'),
 
   'nav.home'           => array('en' => 'Home', 'es' => 'Inicio'),
+  'nav.services'       => array('en' => 'Services', 'es' => 'Servicios'),
+  'nav.mega_title'     => array('en' => 'Not sure where to start?', 'es' => '¿No sabe por dónde empezar?'),
+  'nav.mega_text'      => array('en' => 'Tell us what you need and we’ll guide you to the right service.', 'es' => 'Cuéntenos qué necesita y le orientaremos hacia el servicio adecuado.'),
   'nav.individual'     => array('en' => 'Individual Taxes', 'es' => 'Impuestos Personales'),
   'nav.self_employed'  => array('en' => 'Self-Employed', 'es' => 'Independientes'),
   'nav.small_business' => array('en' => 'Small Business', 'es' => 'Pequeños Negocios'),
@@ -19,6 +22,13 @@ return array(
   'nav.menu'           => array('en' => 'Open menu', 'es' => 'Abrir menú'),
   'nav.close'          => array('en' => 'Close menu', 'es' => 'Cerrar menú'),
   'nav.language'       => array('en' => 'Choose language', 'es' => 'Elegir idioma'),
+
+  'topbar.contact'  => array('en' => 'Contact information', 'es' => 'Información de contacto'),
+  'topbar.address'  => array('en' => 'Open the office location in Google Maps', 'es' => 'Abrir la ubicación de la oficina en Google Maps'),
+  'topbar.social'   => array('en' => 'Social media', 'es' => 'Redes sociales'),
+  'topbar.google'   => array('en' => 'Google Business Profile', 'es' => 'Perfil de Google'),
+  'topbar.bbb'      => array('en' => 'Better Business Bureau', 'es' => 'Better Business Bureau'),
+  'topbar.new_tab'  => array('en' => '(opens in a new tab)', 'es' => '(se abre en una pestaña nueva)'),
 
   'cta.book'       => array('en' => 'Book an Appointment', 'es' => 'Agendar una cita'),
   'cta.call'       => array('en' => 'Call %s', 'es' => 'Llamar al %s'),
@@ -34,7 +44,11 @@ return array(
   'footer.rights'   => array('en' => 'All rights reserved.', 'es' => 'Todos los derechos reservados.'),
   'footer.privacy'  => array('en' => 'Privacy Policy', 'es' => 'Política de privacidad'),
   'footer.legal'    => array('en' => 'Legal', 'es' => 'Legal'),
+  'footer.credit'   => array('en' => 'Site by', 'es' => 'Sitio web por'),
 
+  'form.quick_title'         => array('en' => 'Request a Callback', 'es' => 'Solicite una llamada'),
+  'form.quick_text'          => array('en' => 'Leave your details and our team will contact you.', 'es' => 'Déjenos sus datos y nuestro equipo se comunicará con usted.'),
+  'form.select'              => array('en' => 'Select an option', 'es' => 'Seleccione una opción'),
   'form.title'               => array('en' => 'Request a Callback or Appointment', 'es' => 'Solicite una llamada o una cita'),
   'form.name'                => array('en' => 'Full name', 'es' => 'Nombre completo'),
   'form.phone'               => array('en' => 'Phone number', 'es' => 'Teléfono'),
@@ -47,6 +61,10 @@ return array(
   'form.interest_business'   => array('en' => 'Business Taxes', 'es' => 'Impuestos de negocio'),
   'form.interest_irs'        => array('en' => 'IRS Notice', 'es' => 'Carta del IRS'),
   'form.interest_other'      => array('en' => 'Other', 'es' => 'Otro'),
+  'form.contact_time'           => array('en' => 'Best time to call', 'es' => 'Mejor horario para llamarle'),
+  'form.contact_time_any'       => array('en' => 'Any time', 'es' => 'Cualquier horario'),
+  'form.contact_time_morning'   => array('en' => 'Morning', 'es' => 'Mañana'),
+  'form.contact_time_afternoon' => array('en' => 'Afternoon', 'es' => 'Tarde'),
   'form.message'             => array('en' => 'Message (optional)', 'es' => 'Mensaje (opcional)'),
   'form.message_hint'        => array('en' => 'Briefly tell us how we can help.', 'es' => 'Cuéntenos brevemente en qué podemos ayudarle.'),
   'form.consent'             => array('en' => 'By submitting, you agree to be contacted about your inquiry. Do not include sensitive tax or banking information.', 'es' => 'Al enviar el formulario, acepta que le contactemos con respecto a su consulta. No incluya información fiscal o bancaria sensible.'),
@@ -61,6 +79,11 @@ return array(
   'form.error_consent'       => array('en' => 'Please accept to be contacted about your inquiry.', 'es' => 'Acepte que le contactemos con respecto a su consulta.'),
   'form.error_sensitive'     => array('en' => 'Please remove sensitive information, such as Social Security numbers, from your message.', 'es' => 'Elimine de su mensaje la información sensible, como números de Seguro Social.'),
   'form.error_rate_limited'  => array('en' => 'Too many requests. Please call us instead.', 'es' => 'Demasiadas solicitudes. Por favor llámenos.'),
+
+  'carousel.prev'  => array('en' => 'Previous', 'es' => 'Anterior'),
+  'carousel.next'  => array('en' => 'Next', 'es' => 'Siguiente'),
+  'carousel.goto'  => array('en' => 'Go to item %s', 'es' => 'Ir al elemento %s'),
+  'carousel.slide' => array('en' => '%1$s of %2$s', 'es' => '%1$s de %2$s'),
 
   'chat.title'    => array('en' => 'Need help getting started?', 'es' => '¿Necesita ayuda para comenzar?'),
   'chat.greeting' => array('en' => 'Hi! How can we help you today?', 'es' => '¡Hola! ¿En qué podemos ayudarle hoy?'),

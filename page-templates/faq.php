@@ -14,14 +14,12 @@ get_header(); ?>
 
   <section class="py-16 lg:py-24">
     <div class="container-site max-w-4xl">
-      <h2 class="text-2xl font-bold"><?php lumen_e('faq.group'); ?></h2>
+      <h2 class="text-2xl font-bold"<?php echo lumen_reveal('up'); ?>><?php lumen_e('faq.group'); ?></h2>
       <div class="mt-6">
         <?php get_template_part('template-parts/faq-list'); ?>
       </div>
     </div>
   </section>
-
-  <?php get_template_part('template-parts/cta-band'); ?>
 </main>
 
 <?php get_footer();

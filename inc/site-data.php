@@ -9,13 +9,23 @@ function lumen_site() {
     'name'               => 'Lumen Income Tax',
     'phone'              => '(210) 807-2836',
     'phone_e164'         => '+12108072836',
+    'email'              => '', // Pendiente: el brief pide confirmar el correo público antes de publicarlo.
     'street'             => '13327 Nacogdoches Rd, Unit 1',
     'city'               => 'San Antonio',
     'region'             => 'TX',
     'postal_code'        => '78217',
     'booking_url'        => 'https://calendly.com/lumenincometax',
-    'facebook'           => 'https://www.facebook.com/LumenIncomeTax/',
     'google_reviews_url' => '', // Pendiente: perfil oficial de Google Business verificado.
+    // Redes del topbar y el footer. Las que no tienen URL se muestran como ícono sin enlace.
+    'social'             => array(
+      'facebook'  => 'https://www.facebook.com/LumenIncomeTax/',
+      'instagram' => '', // Pendiente
+      'tiktok'    => '', // Pendiente
+      'linkedin'  => '', // Pendiente
+      'google'    => '', // Pendiente: perfil de Google Business (GMB)
+      'bbb'       => '', // Pendiente: perfil de Better Business Bureau
+    ),
+    'maps_url'           => 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($address),
     'map_embed'          => 'https://www.google.com/maps?q=' . rawurlencode($address) . '&output=embed',
     'directions_url'     => 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode($address),
   );

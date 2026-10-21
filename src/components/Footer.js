@@ -1,6 +1,8 @@
 import React from "react"
 import data, { site, t } from "../lib/data"
 import Icon from "./Icon"
+import SocialLinks from "./SocialLinks"
+import { reveal } from "../lib/reveal"
 import Logo from "./Logo"
 
 function FooterColumn({ title, children }) {
@@ -19,7 +21,7 @@ function LinkList({ links = [] }) {
         .filter(link => link.url)
         .map(link => (
           <li key={link.url}>
-            <a href={link.url} className="hover:text-white">
+            <a href={link.url} className="inline-block transition hover:translate-x-1 hover:text-white">
               {link.label}
             </a>
           </li>
@@ -32,53 +34,48 @@ function Footer() {
   const footer = data.footer || {}
 
   return (
-    <footer className="bg-navy-950 text-slate-300">
+    <footer className="bg-ink text-celeste">
       <div className="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-4" {...reveal("up")}>
           <a href={data.homeUrl} className="text-white" aria-label={site.name}>
             <Logo />
           </a>
           <p className="mt-4 max-w-xs text-sm">{t("footer.tagline")}</p>
+          <SocialLinks className="mt-5 -ml-1.5" itemClassName="text-white" />
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2" {...reveal("up", 1)}>
           <FooterColumn title={t("footer.services")}>
             <LinkList links={footer.services} />
           </FooterColumn>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2" {...reveal("up", 2)}>
           <FooterColumn title={t("footer.company")}>
             <LinkList links={footer.company} />
           </FooterColumn>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2" {...reveal("up", 3)}>
           <FooterColumn title={t("footer.visit")}>
             <address className="not-italic">
               {site.addressLine1}
               <br />
               {site.addressLine2}
             </address>
-            <a href={site.directionsUrl} className="inline-block text-brand-200 hover:text-white" target="_blank" rel="noopener" data-track="click_directions">
+            <a href={site.directionsUrl} className="inline-block text-capa hover:text-white" target="_blank" rel="noopener" data-track="click_directions">
               {t("cta.directions")}
             </a>
           </FooterColumn>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2" {...reveal("up", 4)}>
           <FooterColumn title={t("footer.contact")}>
             <ul className="space-y-2">
               <li>
                 <a href={site.phoneHref} className="flex items-center gap-2 hover:text-white" data-track="click_call">
                   <Icon name="phone" className="h-4 w-4" />
                   {site.phone}
-                </a>
-              </li>
-              <li>
-                <a href={site.facebook} className="flex items-center gap-2 hover:text-white" target="_blank" rel="noopener">
-                  <Icon name="facebook" className="h-4 w-4" />
-                  Facebook
                 </a>
               </li>
               <li>
@@ -97,19 +94,28 @@ function Footer() {
           <p>
             © {data.year} {site.name}. {t("footer.rights")}
           </p>
-          {footer.legal && footer.legal.length > 0 && (
-            <nav aria-label={t("footer.legal")}>
-              <ul className="flex flex-wrap gap-4">
-                {footer.legal.map(link => (
-                  <li key={link.url}>
-                    <a href={link.url} className="hover:text-white">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            {footer.legal && footer.legal.length > 0 && (
+              <nav aria-label={t("footer.legal")}>
+                <ul className="flex flex-wrap gap-4">
+                  {footer.legal.map(link => (
+                    <li key={link.url}>
+                      <a href={link.url} className="hover:text-white">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+            <p>
+              {t("footer.credit")}{" "}
+              <a href="https://828marketingsolutions.com" className="font-semibold text-white underline-offset-4 transition-colors hover:text-capa hover:underline" target="_blank" rel="noopener">
+                828 Marketing Solutions
+                <span className="sr-only"> {t("topbar.new_tab")}</span>
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

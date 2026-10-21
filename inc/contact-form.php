@@ -44,6 +44,9 @@ function lumen_handle_contact(WP_REST_Request $request) {
   $language  = $request->get_param('language') === 'es' ? 'Spanish' : 'English';
   $interest  = $interests[$request->get_param('interest')] ?? 'Other';
   $message   = mb_substr(sanitize_textarea_field((string) $request->get_param('message')), 0, 1000);
+  $form      = sanitize_key((string) $request->get_param('source')) ?: 'contact';
+  $times     = array('any' => 'Any time', 'morning' => 'Morning', 'afternoon' => 'Afternoon');
+  $time      = $times[$request->get_param('contact_time')] ?? 'Any time';
 
   if ($name === '' || $phone === '') {
     return lumen_contact_error('required');
@@ -68,11 +71,13 @@ function lumen_handle_contact(WP_REST_Request $request) {
     'Email: ' . ($email ?: '—'),
     "Preferred language: $language",
     "Interested in: $interest",
+    "Best time to call: $time",
     '',
     'Message:',
     $message ?: '—',
     '',
-    'Source: ' . esc_url_raw(wp_get_referer() ?: home_url('/')),
+    "Form: $form",
+    'Page: ' . esc_url_raw(wp_get_referer() ?: home_url('/')),
   ));
 
   $headers = array();

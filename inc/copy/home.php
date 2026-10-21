@@ -11,8 +11,6 @@ return array(
   'home.hero.badge1'     => array('en' => 'Personal Attention', 'es' => 'Atención personalizada'),
   'home.hero.badge2'     => array('en' => 'Bilingual Support', 'es' => 'Atención bilingüe'),
   'home.hero.badge3'     => array('en' => 'San Antonio, TX', 'es' => 'San Antonio, TX'),
-  'home.hero.card_title' => array('en' => 'Need help getting started?', 'es' => '¿Necesita ayuda para comenzar?'),
-  'home.hero.card_link'  => array('en' => 'Find the right service', 'es' => 'Encuentre el servicio adecuado'),
 
   'home.values.1_title' => array('en' => 'Clear answers.', 'es' => 'Respuestas claras.'),
   'home.values.1_text'  => array('en' => 'No confusing tax language.', 'es' => 'Sin lenguaje fiscal confuso.'),

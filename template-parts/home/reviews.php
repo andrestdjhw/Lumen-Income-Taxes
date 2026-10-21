@@ -6,7 +6,7 @@ if (!$reviews) {
 }
 $google_url = lumen_site()['google_reviews_url'];
 ?>
-<section class="bg-slate-50 py-16 lg:py-24">
+<section class="bg-paper py-16 lg:py-24">
   <div class="container-site">
     <div class="flex flex-wrap items-end justify-between gap-6">
       <?php get_template_part('template-parts/section-heading', null, array(
@@ -20,17 +20,17 @@ $google_url = lumen_site()['google_reviews_url'];
       <?php } ?>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-3">
-      <?php foreach ($reviews as $review) { ?>
-        <figure class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <?php foreach ($reviews as $index => $review) { ?>
+        <figure class="card-lift rounded-2xl border border-ink/10 bg-white p-6 shadow-sm"<?php echo lumen_reveal('up', $index); ?>>
           <div class="flex gap-1 text-amber-400" aria-label="<?php echo esc_attr($review['rating'] . '/5'); ?>">
             <?php for ($i = 0; $i < (int) $review['rating']; $i++) {
               lumen_icon('star', 'h-4 w-4 fill-current');
             } ?>
           </div>
-          <blockquote class="mt-4 text-sm text-slate-700">“<?php echo esc_html($review['text']); ?>”</blockquote>
+          <blockquote class="mt-4 text-sm text-ink/80">“<?php echo esc_html($review['text']); ?>”</blockquote>
           <figcaption class="mt-4 text-sm">
-            <span class="font-semibold text-navy-950"><?php echo esc_html($review['name']); ?></span>
-            <span class="block text-xs text-slate-500"><?php echo esc_html($review['source']); ?></span>
+            <span class="font-semibold text-lumen"><?php echo esc_html($review['name']); ?></span>
+            <span class="block text-xs text-ink/65"><?php echo esc_html($review['source']); ?></span>
           </figcaption>
         </figure>
       <?php } ?>

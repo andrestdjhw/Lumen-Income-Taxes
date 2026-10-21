@@ -9,7 +9,7 @@ require_once get_theme_file_path('/inc/seo.php');
 function lumen_load_assets() {
   $asset = include get_theme_file_path('/build/index.asset.php');
 
-  wp_enqueue_style('lumen-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap', array(), null);
+  wp_enqueue_style('lumen-fonts', 'https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap', array(), null);
   wp_enqueue_style('lumen-main', get_theme_file_uri('/build/index.css'), array('lumen-fonts'), filemtime(get_theme_file_path('/build/index.css')));
 
   wp_enqueue_script('lumen-main', get_theme_file_uri('/build/index.js'), $asset['dependencies'], $asset['version'], true);

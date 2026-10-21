@@ -31,7 +31,7 @@ function lumen_local_business_schema() {
       'postalCode'      => $site['postal_code'],
       'addressCountry'  => 'US',
     ),
-    'sameAs'    => array($site['facebook']),
+    'sameAs'    => array_values(array_filter($site['social'])),
   );
 
   printf("<script type=\"application/ld+json\">%s</script>\n", wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
