@@ -3,6 +3,7 @@ import data, { site, t } from "../lib/data"
 import Icon from "./Icon"
 import Logo from "./Logo"
 import Topbar from "./Topbar"
+import SocialLinks from "./SocialLinks"
 
 function LanguageSwitch({ className = "" }) {
   const links = data.langLinks || {}
@@ -140,18 +141,33 @@ function Navbar() {
 
   useEffect(() => {
     // El topbar se oculta al bajar y reaparece al subir (o al volver arriba del todo).
+    // Solo se cuenta un cambio de dirección tras 12px acumulados, y el header usa umbrales distintos para
+    // compactarse (40px) y expandirse (4px): así el scroll lento no hace que el estado cambie de ida y vuelta.
     let lastY = window.scrollY
     const onScroll = () => {
       const y = window.scrollY
-      setScrolled(y > 8)
-      if (y < 40) setTopbarVisible(true)
-      else if (Math.abs(y - lastY) > 6) setTopbarVisible(y < lastY)
-      lastY = y
+      setScrolled(prev => (prev ? y > 4 : y > 40))
+      if (y < 40) {
+        setTopbarVisible(true)
+        lastY = y
+      } else if (Math.abs(y - lastY) >= 12) {
+        setTopbarVisible(y < lastY)
+        lastY = y
+      }
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  // El navbar sube la altura del topbar en lugar de plegarlo: su alto no cambia, así el contenido de la página
+  // no se mueve (un cambio de alto activaba el "scroll anchoring" del navegador y provocaba el rebote).
+  const showTopbar = topbarVisible || open
+  useEffect(() => {
+    const wrapper = document.getElementById("lumen-navbar")
+    const topbar = wrapper && wrapper.firstElementChild
+    if (wrapper && topbar) wrapper.style.setProperty("--topbar-offset", showTopbar ? "0px" : `${topbar.offsetHeight}px`)
+  }, [showTopbar])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -163,9 +179,10 @@ function Navbar() {
 
   return (
     <>
-      <Topbar visible={topbarVisible || open} />
+      <Topbar visible={showTopbar} />
       <header className={`relative bg-white/95 backdrop-blur transition-shadow duration-300 ${scrolled ? "shadow-md" : "border-b border-ink/5"}`}>
-        <div className={`container-site flex items-center justify-between gap-6 transition-[height] duration-300 ease-out-soft ${scrolled ? "h-18" : "h-20"}`}>
+        {/* Alto fijo: cambiarlo al hacer scroll movía el contenido. Al compactarse solo cambian la sombra y el tamaño del logo. */}
+        <div className="container-site flex h-20 items-center justify-between gap-6">
           <a href={data.homeUrl} className={`origin-left text-lumen transition-transform duration-300 ease-out-soft ${scrolled ? "scale-[0.88]" : ""}`} aria-label={`${site.name} — ${t("nav.home")}`}>
             <Logo />
           </a>
@@ -219,16 +236,13 @@ function Navbar() {
                   )
                 )}
               </ul>
-              <div className="mt-4 flex flex-col gap-3 border-t border-ink/5 pt-4">
+              {/* Sin botones de Llamar/Agendar: en móvil ya están en la barra fija inferior y en tablet en el header y el topbar. */}
+              {/* En móvil las redes van aquí (el topbar muestra correo y ubicación); desde tablet siguen en el topbar. */}
+              <div className="mt-4 flex items-center justify-between gap-4 border-t border-ink/5 pt-4">
                 <LanguageSwitch className="flex" />
-                <a href={site.phoneHref} className="btn btn-outline" data-track="click_call">
-                  <Icon name="phone" className="h-4 w-4" />
-                  {t("cta.call", site.phone)}
-                </a>
-                <a href={site.bookingUrl} className="btn btn-primary" target="_blank" rel="noopener" data-track="click_book">
-                  {t("cta.book")}
-                  <Icon name="calendar" className="h-4 w-4" />
-                </a>
+                <div className="sm:hidden">
+                  <SocialLinks itemClassName="text-lumen hover:bg-celeste-light" />
+                </div>
               </div>
             </nav>
           </div>

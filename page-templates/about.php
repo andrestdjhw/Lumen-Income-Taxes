@@ -18,7 +18,7 @@ get_header(); ?>
 
   <section class="py-16 lg:py-24">
     <div class="container-site grid items-center gap-10 lg:grid-cols-2">
-      <?php get_template_part('template-parts/photo', null, array('key' => 'yolanda-portrait', 'class' => 'aspect-[4/5] rounded-2xl lg:order-2')); ?>
+      <?php get_template_part('template-parts/photo', null, array('key' => 'yolanda-portrait', 'class' => 'aspect-[4/5] rounded-2xl lg:order-2', 'avatar' => true)); ?>
       <div>
         <?php get_template_part('template-parts/section-heading', null, array(
           'title' => lumen_t('about.founder.title'),
@@ -42,14 +42,20 @@ get_header(); ?>
       <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <?php foreach (array_keys($values) as $index => $value) {
           $icon = $values[$value]; ?>
-          <li class="group card-lift rounded-2xl border border-ink/10 bg-white p-6 text-center shadow-sm"<?php echo lumen_reveal('zoom', $index); ?>>
-            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full text-lumen icon-chip"><?php lumen_icon($icon, 'h-7 w-7'); ?></div>
-            <h3 class="mt-4 text-lg font-bold"><?php lumen_e("about.values.$value"); ?></h3>
+          <li class="group card-lift flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white text-center shadow-sm"<?php echo lumen_reveal('up', $index); ?>>
+            <?php get_template_part('template-parts/photo', null, array('key' => "value-$value", 'class' => 'aspect-[4/3] transition-transform duration-700 ease-out-soft group-hover:scale-105', 'reveal' => false)); ?>
+            <div class="relative flex flex-1 flex-col items-center bg-white px-6 pb-6">
+              <div class="relative -mt-7 flex h-14 w-14 items-center justify-center rounded-full text-lumen icon-chip"><?php lumen_icon($icon, 'h-7 w-7'); ?></div>
+              <h3 class="mt-4 text-lg font-bold"><?php lumen_e("about.values.$value"); ?></h3>
+            </div>
           </li>
         <?php } ?>
       </ul>
     </div>
   </section>
+
+  <?php get_template_part('template-parts/page-faq', null, array('page' => 'about')); ?>
+  <?php get_template_part('template-parts/contact'); ?>
 
   <?php lumen_cta_band(array(
     'button' => lumen_t('about.cta.button'),

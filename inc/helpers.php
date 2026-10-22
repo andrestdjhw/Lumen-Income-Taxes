@@ -33,12 +33,10 @@ function lumen_page_url($template) {
 }
 
 function lumen_services() {
-  $business = lumen_page_url('business');
-
   return array(
-    array('key' => 'individual', 'icon' => 'user', 'url' => lumen_page_url('individual')),
-    array('key' => 'self_employed', 'icon' => 'briefcase', 'url' => $business . '#self-employed'),
-    array('key' => 'small_business', 'icon' => 'store', 'url' => $business . '#small-business'),
+    array('key' => 'individual', 'icon' => 'user', 'url' => lumen_page_url('individual'), 'template' => 'individual'),
+    array('key' => 'self_employed', 'icon' => 'briefcase', 'url' => lumen_page_url('self-employed'), 'template' => 'self-employed'),
+    array('key' => 'small_business', 'icon' => 'store', 'url' => lumen_page_url('small-business'), 'template' => 'small-business'),
   );
 }
 
@@ -56,7 +54,7 @@ function lumen_nav() {
       'text'    => lumen_t("service.{$service['key']}.text"),
       'icon'    => $service['icon'],
       'url'     => $service['url'],
-      'current' => $service['key'] === 'individual' && lumen_is_page('individual'),
+      'current' => lumen_is_page($service['template']),
     );
   }
 
@@ -64,7 +62,7 @@ function lumen_nav() {
     'key'      => 'services',
     'label'    => lumen_t('nav.services'),
     'url'      => '',
-    'current'  => lumen_is_page('individual') || lumen_is_page('business'),
+    'current'  => lumen_is_page('individual') || lumen_is_page('self-employed') || lumen_is_page('small-business'),
     'children' => $services,
   ));
   foreach (array('process', 'about', 'faq', 'contact') as $template) {
@@ -98,6 +96,15 @@ function lumen_reveal($type = 'up', $index = 0) {
     $attrs .= sprintf(' style="--reveal-delay: %dms"', $index * 110);
   }
   return $attrs;
+}
+
+// Preguntas generales destacadas (Home): las $per_group primeras de cada grupo de la página FAQs.
+function lumen_faq_featured($per_group = 2) {
+  $items = array();
+  foreach (lumen_t('faq.groups') as $group) {
+    $items = array_merge($items, array_slice($group['items'], 0, $per_group));
+  }
+  return $items;
 }
 
 // Banda CTA global (se imprime en footer.php en todo el sitio).
@@ -182,6 +189,11 @@ function lumen_js_data() {
       ), function ($item) {
         return $item['url'] !== '';
       })),
+    ),
+    'logos'      => array(
+      'wordmark' => get_theme_file_uri('/assets/brand/wordmark.png'),
+      'seal'     => get_theme_file_uri('/assets/brand/seal.png'),
+      'symbol'   => get_theme_file_uri('/assets/brand/symbol.png'),
     ),
     'rest'       => array('contact' => rest_url('lumen/v1/contact')),
     'year'       => (int) date('Y'),

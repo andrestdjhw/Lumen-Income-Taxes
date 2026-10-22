@@ -1,11 +1,23 @@
 <?php
-// Imagen de fondo del hero. Con una sola clave queda fija con un zoom lento; con varias se convierte
-// en un slideshow con fundido (src/lib/slideshow.js). El brief recomienda un hero sin slider.
-// Ejemplo de slideshow: array('home-hero', 'about-hero', 'business-hero')
-$slides = array_values(array_filter(array_map('lumen_photo', array('home-hero'))));
+// Fondo del hero. Si existe assets/video/home-hero-*.mp4 se usa el video (src/lib/hero-video.js elige
+// 1080p o 720p según la pantalla); el poster se ve mientras carga, sin JavaScript o con "reducir movimiento".
+// Sin video se usa la foto: con una clave queda fija con zoom lento; con varias, slideshow con fundido
+// (src/lib/slideshow.js). Ejemplo de slideshow: array('home-hero', 'about-hero', 'business-hero')
+$video = file_exists(get_theme_file_path('/assets/video/home-hero-1080.mp4'));
+$slides = $video ? array() : array_values(array_filter(array_map('lumen_photo', array('home-hero'))));
 ?>
-<section class="relative isolate flex flex-1 items-center overflow-hidden">
-  <div class="absolute inset-0 -z-20 overflow-hidden bg-paper lg:left-[30%]" <?php echo count($slides) > 1 ? 'data-slideshow' : ''; ?>>
+<section class="hero-dark relative isolate flex flex-1 items-center overflow-hidden">
+  <div class="absolute inset-0 -z-20 overflow-hidden bg-lumen" <?php echo count($slides) > 1 ? 'data-slideshow' : ''; ?>>
+    <?php if ($video) { ?>
+      <video
+        class="absolute inset-0 h-full w-full object-cover"
+        poster="<?php echo esc_url(get_theme_file_uri('/assets/video/home-hero-poster.jpg')); ?>"
+        data-src-desktop="<?php echo esc_url(get_theme_file_uri('/assets/video/home-hero-1080.mp4')); ?>"
+        data-src-mobile="<?php echo esc_url(get_theme_file_uri('/assets/video/home-hero-720.mp4')); ?>"
+        muted loop playsinline preload="none" aria-hidden="true"
+        data-hero-video
+      ></video>
+    <?php } ?>
     <?php foreach ($slides as $index => $slide) { ?>
       <img
         src="<?php echo esc_url($slide['url']); ?>"
@@ -20,21 +32,22 @@ $slides = array_values(array_filter(array_map('lumen_photo', array('home-hero'))
       >
     <?php } ?>
   </div>
-  <!-- Velo Blanco Papel (mismo tono que el hero de las subpáginas) para que el texto se lea sobre la foto y se distinga del navbar blanco. -->
-  <div class="absolute inset-0 -z-10 bg-paper/90 lg:bg-transparent lg:bg-linear-to-r lg:from-paper lg:from-30% lg:via-paper/75 lg:via-45% lg:to-paper/0 lg:to-65%"></div>
+  <!-- Overlay oscuro (Negro Tinta → Azul Lumen) para que los textos claros se lean sobre el video o la foto (ver .hero-dark). -->
+  <div class="absolute inset-0 -z-10 bg-ink/75 lg:bg-transparent lg:bg-linear-to-r lg:from-ink/90 lg:from-25% lg:via-lumen/70 lg:via-55% lg:to-lumen/25"></div>
 
   <div class="container-site grid gap-10 py-12 lg:grid-cols-2 lg:py-16 short:gap-8 short:py-6">
     <div class="self-center">
       <p class="eyebrow"<?php echo lumen_reveal('up'); ?>><?php lumen_e('home.hero.eyebrow'); ?></p>
       <h1 class="mt-4 text-4xl leading-tight font-bold sm:text-5xl lg:text-[3.4rem] short:mt-3 short:text-[2.6rem] short:leading-[1.12]"<?php echo lumen_reveal('up', 1); ?>><?php lumen_e('home.hero.title'); ?></h1>
       <p class="mt-6 max-w-xl text-lg text-ink/80 short:mt-4 short:text-base"<?php echo lumen_reveal('up', 2); ?>><?php lumen_e('home.hero.text'); ?></p>
-      <div class="mt-8 flex flex-wrap gap-3 short:mt-5"<?php echo lumen_reveal('up', 3); ?>>
+      <!-- En móvil (<640px) se ocultan: Llamar y Agendar ya están en la barra fija inferior. -->
+      <div class="mt-8 hidden flex-wrap gap-3 sm:flex short:mt-5"<?php echo lumen_reveal('up', 3); ?>>
         <?php lumen_book_button(); ?>
-        <?php lumen_call_button(); ?>
+        <?php lumen_call_button('btn-light'); ?>
       </div>
-      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-lumen short:mt-5"<?php echo lumen_reveal('up', 4); ?>>
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-white short:mt-5"<?php echo lumen_reveal('up', 4); ?>>
         <?php foreach (array('badge1', 'badge2', 'badge3') as $badge) { ?>
-          <li class="flex items-center gap-2"><?php lumen_icon('check', 'h-4 w-4 text-cianotipo'); ?><?php lumen_e("home.hero.$badge"); ?></li>
+          <li class="flex items-center gap-2"><?php lumen_icon('check', 'h-4 w-4 text-celeste'); ?><?php lumen_e("home.hero.$badge"); ?></li>
         <?php } ?>
       </ul>
     </div>

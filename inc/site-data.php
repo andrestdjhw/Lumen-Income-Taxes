@@ -9,7 +9,7 @@ function lumen_site() {
     'name'               => 'Lumen Income Tax',
     'phone'              => '(210) 807-2836',
     'phone_e164'         => '+12108072836',
-    'email'              => '', // Pendiente: el brief pide confirmar el correo público antes de publicarlo.
+    'email'              => 'info@lumenincometax.com',
     'street'             => '13327 Nacogdoches Rd, Unit 1',
     'city'               => 'San Antonio',
     'region'             => 'TX',

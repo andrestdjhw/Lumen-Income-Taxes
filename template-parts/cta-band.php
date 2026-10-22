@@ -22,7 +22,7 @@ $button = $args['button'] ?? lumen_t('home.cta.button');
       </div>
     </div>
     <div class="hidden justify-center lg:flex"<?php echo lumen_reveal('zoom', 2); ?>>
-      <?php get_template_part('template-parts/logo', null, array('size' => 'lg')); ?>
+      <?php get_template_part('template-parts/logo', null, array('variant' => 'seal', 'light' => true, 'class' => 'h-52 w-52 xl:h-60 xl:w-60', 'alt' => '')); ?>
     </div>
   </div>
 </section>

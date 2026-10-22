@@ -1,17 +1,19 @@
 <?php
-// Datos de contacto + mapa + formulario (React). Args: show_heading (bool), interest (valor preseleccionado).
+// Izquierda: texto y datos de contacto arriba, mapa abajo a lo ancho. Derecha: formulario (React).
+// Args: show_heading (bool), interest (valor preseleccionado).
 $site = lumen_site();
 $show_heading = $args['show_heading'] ?? true;
 ?>
 <section id="contact" class="bg-white py-16 lg:py-24">
   <div class="container-site grid gap-8 lg:grid-cols-12">
-    <div class="lg:col-span-3"<?php echo lumen_reveal('up'); ?>>
+    <div class="flex flex-col gap-8 lg:col-span-7">
+      <div<?php echo lumen_reveal('up'); ?>>
       <?php if ($show_heading) { ?>
         <p class="eyebrow"><?php lumen_e('contact.eyebrow'); ?></p>
         <h2 class="mt-3 text-3xl font-bold"><?php lumen_e('contact.title'); ?></h2>
         <p class="mt-4 text-ink/70"><?php lumen_e('contact.intro'); ?></p>
       <?php } ?>
-      <ul class="<?php echo $show_heading ? 'mt-8' : ''; ?> space-y-6 text-sm">
+      <ul class="<?php echo $show_heading ? 'mt-8' : ''; ?> grid gap-6 text-sm sm:grid-cols-3">
         <li class="flex gap-3">
           <span class="text-lumen"><?php lumen_icon('phone', 'h-5 w-5'); ?></span>
           <a href="<?php echo esc_attr('tel:' . $site['phone_e164']); ?>" class="font-semibold text-lumen hover:text-cianotipo" data-track="click_call"><?php echo esc_html($site['phone']); ?></a>
@@ -32,10 +34,12 @@ $show_heading = $args['show_heading'] ?? true;
         </li>
       </ul>
       <p class="mt-6 text-xs text-ink/65"><?php lumen_e('footer.note'); ?></p>
-    </div>
+      </div>
 
-    <div class="overflow-hidden rounded-2xl border border-ink/10 lg:col-span-4"<?php echo lumen_reveal('up', 1); ?>>
-      <iframe src="<?php echo esc_url($site['map_embed']); ?>" title="<?php echo esc_attr(lumen_t('contact.map_title')); ?>" class="h-80 w-full lg:h-full lg:min-h-96" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- El mapa ocupa el alto restante para que la columna termine a la par del formulario. -->
+      <div class="min-h-72 flex-1 overflow-hidden rounded-2xl border border-ink/10"<?php echo lumen_reveal('up', 1); ?>>
+        <iframe src="<?php echo esc_url($site['map_embed']); ?>" title="<?php echo esc_attr(lumen_t('contact.map_title')); ?>" class="h-full min-h-72 w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
 
     <div id="contact-form" class="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm sm:p-8 lg:col-span-5"<?php echo lumen_reveal('up', 2); ?>>

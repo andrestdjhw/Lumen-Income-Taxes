@@ -1,6 +1,7 @@
 <?php
 // Acordeón accesible sin JavaScript: la pregunta y la respuesta completas quedan en el HTML (brief, sección 08).
-$items = lumen_t('faq.items');
+// Args opcionales: items (lista de preguntas) o key (clave del copy). Por defecto, las destacadas del Home.
+$items = $args['items'] ?? (isset($args['key']) ? lumen_t($args['key']) : lumen_faq_featured());
 ?>
 <div class="divide-y divide-ink/10 rounded-xl border border-ink/10 bg-white">
   <?php foreach ($items as $index => $item) { ?>

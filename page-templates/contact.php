@@ -14,6 +14,7 @@ get_header(); ?>
   )); ?>
 
   <?php get_template_part('template-parts/contact', null, array('show_heading' => false)); ?>
+  <?php get_template_part('template-parts/page-faq', null, array('page' => 'contact')); ?>
 </main>
 
 <?php get_footer();

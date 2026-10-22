@@ -7,6 +7,8 @@ import Chatbot from "./components/Chatbot"
 import { initReveal } from "./lib/reveal"
 import { initSlideshows } from "./lib/slideshow"
 import { initCarousels } from "./lib/carousel"
+import { initHeroVideo } from "./lib/hero-video"
+import { initTilt } from "./lib/tilt"
 
 // Monta un componente de React en cada elemento que coincida con el selector.
 // Los atributos data-* del elemento se pasan como props (ej. data-interest="business").
@@ -30,6 +32,8 @@ if (navbar && "ResizeObserver" in window) {
 }
 initSlideshows()
 initCarousels()
+initHeroVideo()
+initTilt()
 
 // Eventos GA4 sugeridos en el brief (click_call, click_book, click_directions, language_switch).
 document.addEventListener("click", event => {

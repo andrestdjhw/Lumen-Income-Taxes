@@ -22,7 +22,10 @@ function lumen_local_business_schema() {
     '@type'     => 'LocalBusiness',
     'name'      => $site['name'],
     'url'       => home_url('/'),
+    'logo'      => get_theme_file_uri('/assets/brand/wordmark.png'),
+    'image'     => get_theme_file_uri('/assets/brand/seal.png'),
     'telephone' => $site['phone_e164'],
+    'email'     => $site['email'],
     'address'   => array(
       '@type'           => 'PostalAddress',
       'streetAddress'   => $site['street'],

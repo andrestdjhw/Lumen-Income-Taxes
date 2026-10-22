@@ -6,8 +6,8 @@ return array(
   'home.meta_title' => array('en' => 'Tax Preparation in San Antonio, TX | Lumen Income Tax', 'es' => 'Preparación de Impuestos en San Antonio | Lumen Income Tax'),
 
   'home.hero.eyebrow'    => array('en' => 'Tax preparation · San Antonio, TX', 'es' => 'Preparación de impuestos · San Antonio, TX'),
-  'home.hero.title'      => array('en' => 'Tax Preparation with *Clarity* and Personal Attention in San Antonio', 'es' => 'Preparación de impuestos con *claridad* y atención personalizada en San Antonio'),
-  'home.hero.text'       => array('en' => 'Individual tax preparation and guidance for self-employed individuals and small business owners. Get organized, understand the process, and know your next step.', 'es' => 'Preparación de impuestos personales y orientación para trabajadores independientes y dueños de pequeños negocios. Organice su información, comprenda el proceso y conozca su siguiente paso.'),
+  'home.hero.title'      => array('en' => 'Tax Preparation in San Antonio, Explained *Clearly*', 'es' => 'Preparación de impuestos en San Antonio, explicada con *claridad*'),
+  'home.hero.text'       => array('en' => 'Personal, bilingual tax help for individuals, the self-employed, and small business owners. We walk you through every step, so you know what you’re filing and what comes next.', 'es' => 'Atención personal y bilingüe para personas, trabajadores independientes y pequeños negocios. Le acompañamos en cada paso para que sepa qué presenta y qué sigue.'),
   'home.hero.badge1'     => array('en' => 'Personal Attention', 'es' => 'Atención personalizada'),
   'home.hero.badge2'     => array('en' => 'Bilingual Support', 'es' => 'Atención bilingüe'),
   'home.hero.badge3'     => array('en' => 'San Antonio, TX', 'es' => 'San Antonio, TX'),

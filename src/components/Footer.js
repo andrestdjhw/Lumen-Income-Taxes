@@ -38,7 +38,7 @@ function Footer() {
       <div className="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4" {...reveal("up")}>
           <a href={data.homeUrl} className="text-white" aria-label={site.name}>
-            <Logo />
+            <Logo light />
           </a>
           <p className="mt-4 max-w-xs text-sm">{t("footer.tagline")}</p>
           <SocialLinks className="mt-5 -ml-1.5" itemClassName="text-white" />

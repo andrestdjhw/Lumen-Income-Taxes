@@ -1,7 +1,7 @@
 <?php $features = array(1 => 'message', 2 => 'heart', 3 => 'star'); ?>
 <section class="py-16 lg:py-24">
   <div class="container-site grid items-center gap-10 lg:grid-cols-12">
-    <?php get_template_part('template-parts/photo', null, array('key' => 'yolanda-portrait', 'class' => 'aspect-[4/5] rounded-2xl lg:col-span-4')); ?>
+    <?php get_template_part('template-parts/photo', null, array('key' => 'yolanda-portrait', 'class' => 'aspect-[4/5] rounded-2xl lg:col-span-4', 'avatar' => true)); ?>
 
     <div class="lg:col-span-5">
       <?php get_template_part('template-parts/section-heading', null, array(

@@ -43,6 +43,8 @@ get_header(); ?>
     </div>
   </section>
 
+  <?php get_template_part('template-parts/page-faq', null, array('page' => 'individual')); ?>
+
   <?php lumen_cta_band(array(
     'title'  => lumen_t('individual.cta.title'),
     'button' => lumen_t('individual.cta.button'),

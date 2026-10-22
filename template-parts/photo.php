@@ -1,13 +1,17 @@
 <?php
 // Foto de sección. Args: key, class, priority (true solo para la imagen principal visible al cargar),
-// reveal (animación al hacer scroll: 'photo' por defecto, false para desactivarla).
+// reveal (animación al hacer scroll: 'photo' por defecto, false para desactivarla), avatar (true: si falta la foto, muestra una silueta estándar).
 // Para usar la foto real, reemplazar assets/images/{key}.webp conservando el mismo nombre.
 $key = $args['key'];
 $class = $args['class'] ?? '';
 $photo = lumen_photo($key);
 
 if (!$photo) {
-  get_template_part('template-parts/placeholder', null, array('label' => 'Foto pendiente: ' . lumen_t("photo.$key"), 'class' => $class));
+  if (!empty($args['avatar'])) {
+    get_template_part('template-parts/placeholder', null, array('label' => lumen_t("photo.$key"), 'class' => $class, 'avatar' => true));
+  } else {
+    get_template_part('template-parts/placeholder', null, array('label' => 'Foto pendiente: ' . lumen_t("photo.$key"), 'class' => $class));
+  }
   return;
 }
 

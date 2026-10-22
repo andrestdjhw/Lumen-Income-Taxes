@@ -34,3 +34,41 @@ function lumen_add_support() {
 }
 
 add_action('after_setup_theme', 'lumen_add_support');
+
+// Logo oficial en la pantalla de inicio de sesión de WordPress.
+function lumen_login_logo() {
+  printf(
+    '<style>#login h1 a { background: url(%s) center / contain no-repeat; width: 260px; height: 77px; }</style>',
+    esc_url(get_theme_file_uri('/assets/brand/wordmark.png'))
+  );
+}
+
+add_action('login_enqueue_scripts', 'lumen_login_logo');
+
+function lumen_login_logo_url() {
+  return home_url('/');
+}
+
+add_filter('login_headerurl', 'lumen_login_logo_url');
+
+function lumen_login_logo_text() {
+  return lumen_site()['name'];
+}
+
+add_filter('login_headertext', 'lumen_login_logo_text');
+
+// Redirección 301 de URLs antiguas (WordPress no guarda los slugs viejos de las páginas).
+// La página combinada "Business Tax Support" se separó en Self-Employed y Small Business.
+function lumen_legacy_redirects() {
+  if (!is_404()) {
+    return;
+  }
+  $legacy = array('business-tax-support' => 'self-employed');
+  $path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+  if (isset($legacy[$path]) && lumen_page_url($legacy[$path])) {
+    wp_safe_redirect(lumen_page_url($legacy[$path]), 301);
+    exit;
+  }
+}
+
+add_action('template_redirect', 'lumen_legacy_redirects');

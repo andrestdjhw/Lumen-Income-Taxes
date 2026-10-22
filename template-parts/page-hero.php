@@ -1,21 +1,23 @@
 <?php
 // Hero de páginas internas. Args: eyebrow, title, text, cta, cta_url (si no hay, el botón abre la agenda), photo (clave de la foto).
 // Si la página tiene "Imagen destacada" en WordPress, se usa como fondo completo (mismo estilo que el hero del Home)
-// y tiene prioridad sobre 'photo'. Así la imagen se puede cambiar desde el administrador.
+// con overlay oscuro y textos claros, y tiene prioridad sobre 'photo'. Así la imagen se puede cambiar desde el administrador.
 $background = (is_page() && has_post_thumbnail()) ? get_post_thumbnail_id() : 0;
 $photo = $background ? '' : ($args['photo'] ?? '');
 ?>
 <?php if ($background) { ?>
-<section class="relative isolate overflow-hidden">
-  <div class="absolute inset-0 -z-20 overflow-hidden bg-paper lg:left-[30%]">
+<section class="hero-dark relative isolate overflow-hidden">
+  <div class="absolute inset-0 -z-20 overflow-hidden bg-lumen">
     <?php echo wp_get_attachment_image($background, 'full', false, array(
-      'class'         => 'h-full w-full object-cover motion-safe:animate-ken-burns',
+      // Encuadre hacia el tercio superior: en las fotos de personas las caras suelen estar arriba.
+      'class'         => 'h-full w-full object-cover object-[center_25%] motion-safe:animate-ken-burns',
       'loading'       => 'eager',
       'fetchpriority' => 'high',
-      'sizes'         => '(min-width: 1024px) 70vw, 100vw',
+      'sizes'         => '100vw',
     )); ?>
   </div>
-  <div class="absolute inset-0 -z-10 bg-paper/90 lg:bg-transparent lg:bg-linear-to-r lg:from-paper lg:from-30% lg:via-paper/75 lg:via-45% lg:to-paper/0 lg:to-65%"></div>
+  <!-- Overlay oscuro (Negro Tinta → Azul Lumen) para los textos claros (ver .hero-dark). -->
+  <div class="absolute inset-0 -z-10 bg-ink/75 lg:bg-transparent lg:bg-linear-to-r lg:from-ink/90 lg:from-25% lg:via-lumen/70 lg:via-55% lg:to-lumen/25"></div>
   <div class="container-site py-16 lg:py-28">
     <div class="max-w-2xl">
 <?php } else { ?>
@@ -30,13 +32,14 @@ $photo = $background ? '' : ($args['photo'] ?? '');
       <?php if (!empty($args['text'])) { ?>
         <p class="mt-6 max-w-2xl text-lg text-ink/80"<?php echo lumen_reveal('up', 2); ?>><?php echo lumen_format($args['text']); ?></p>
       <?php } ?>
-      <div class="mt-8 flex flex-wrap gap-3"<?php echo lumen_reveal('up', 3); ?>>
+      <!-- En móvil (<640px) se ocultan: Llamar y Agendar ya están en la barra fija inferior. -->
+      <div class="mt-8 hidden flex-wrap gap-3 sm:flex"<?php echo lumen_reveal('up', 3); ?>>
         <?php if (!empty($args['cta_url'])) { ?>
           <a href="<?php echo esc_url($args['cta_url']); ?>" class="btn btn-primary"><?php echo esc_html($args['cta']); ?><?php lumen_icon('arrow-right', 'h-4 w-4'); ?></a>
         <?php } else {
           lumen_book_button($args['cta'] ?? null);
         }
-        lumen_call_button(); ?>
+        lumen_call_button($background ? 'btn-light' : 'btn-outline'); ?>
       </div>
     </div>
     <?php if ($photo) {
