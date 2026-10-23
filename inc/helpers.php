@@ -107,6 +107,19 @@ function lumen_faq_featured($per_group = 2) {
   return $items;
 }
 
+// Enlaces legales del footer (solo los de páginas publicadas). Privacidad: la página de privacidad de WordPress
+// (Ajustes → Privacidad); Términos: la página con slug terms-and-conditions.
+function lumen_legal_links() {
+  $terms = get_page_by_path('terms-and-conditions');
+  $links = array(
+    array('label' => lumen_t('footer.privacy'), 'url' => lumen_with_lang(get_privacy_policy_url())),
+    array('label' => lumen_t('footer.terms'), 'url' => ($terms && $terms->post_status === 'publish') ? lumen_with_lang(get_permalink($terms)) : ''),
+  );
+  return array_values(array_filter($links, function ($item) {
+    return $item['url'] !== '';
+  }));
+}
+
 // Banda CTA global (se imprime en footer.php en todo el sitio).
 // Una plantilla puede personalizarla llamando lumen_cta_band(array(...)) antes de get_footer().
 function lumen_cta_band($args = null) {
@@ -141,7 +154,7 @@ function lumen_js_data() {
 
   $strings = array();
   foreach (array_keys(lumen_copy()) as $key) {
-    if (preg_match('/^(nav|topbar|cta|footer|form|chat|a11y)\./', $key)) {
+    if (preg_match('/^(nav|topbar|cta|footer|form|chat|cookie|a11y)\./', $key)) {
       $strings[$key] = lumen_t($key);
     }
   }
@@ -161,6 +174,7 @@ function lumen_js_data() {
     'homeUrl'    => lumen_page_url('home'),
     'contactUrl' => lumen_page_url('contact'),
     'faqUrl'     => lumen_page_url('faq'),
+    'privacyUrl' => lumen_with_lang(get_privacy_policy_url()),
     'strings'    => $strings,
     'nav'        => lumen_nav(),
     'site'       => array(
@@ -184,11 +198,7 @@ function lumen_js_data() {
         $link('nav.faq', lumen_page_url('faq')),
         $link('nav.contact', lumen_page_url('contact')),
       ),
-      'legal'    => array_values(array_filter(array(
-        $link('footer.privacy', get_privacy_policy_url()),
-      ), function ($item) {
-        return $item['url'] !== '';
-      })),
+      'legal'    => lumen_legal_links(),
     ),
     'logos'      => array(
       'wordmark' => get_theme_file_uri('/assets/brand/wordmark.png'),

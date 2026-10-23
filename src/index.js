@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import ContactForm from "./components/ContactForm"
 import Chatbot from "./components/Chatbot"
+import CookieBanner from "./components/CookieBanner"
 import { initReveal } from "./lib/reveal"
 import { initSlideshows } from "./lib/slideshow"
 import { initCarousels } from "./lib/carousel"
@@ -20,6 +21,7 @@ mount("#lumen-navbar", Navbar)
 mount("#lumen-footer", Footer)
 mount("[data-component='contact-form']", ContactForm)
 mount("#lumen-chatbot", Chatbot)
+mount("#lumen-cookies", CookieBanner)
 initReveal()
 
 // Alto del navbar para que el hero + cinta ocupen exactamente la pantalla (.hero-screen en src/index.css).

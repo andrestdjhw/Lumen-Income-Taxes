@@ -4,6 +4,7 @@
   <?php get_template_part('template-parts/footer-fallback'); ?>
 </div>
 <div id="lumen-chatbot"></div>
+<div id="lumen-cookies"></div>
 
 <?php wp_footer(); ?>
 </body>

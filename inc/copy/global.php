@@ -43,6 +43,7 @@ return array(
   'footer.note'     => array('en' => 'Appointments recommended. Please confirm office hours before visiting.', 'es' => 'Se recomienda agendar cita. Confirme el horario antes de visitarnos.'),
   'footer.rights'   => array('en' => 'All rights reserved.', 'es' => 'Todos los derechos reservados.'),
   'footer.privacy'  => array('en' => 'Privacy Policy', 'es' => 'Política de privacidad'),
+  'footer.terms'    => array('en' => 'Terms & Conditions', 'es' => 'Términos y condiciones'),
   'footer.legal'    => array('en' => 'Legal', 'es' => 'Legal'),
   'footer.credit'   => array('en' => 'Site by', 'es' => 'Sitio web por'),
 
@@ -84,6 +85,12 @@ return array(
   'carousel.next'  => array('en' => 'Next', 'es' => 'Siguiente'),
   'carousel.goto'  => array('en' => 'Go to item %s', 'es' => 'Ir al elemento %s'),
   'carousel.slide' => array('en' => '%1$s of %2$s', 'es' => '%1$s de %2$s'),
+
+  'cookie.label'   => array('en' => 'Cookie notice', 'es' => 'Aviso de cookies'),
+  'cookie.text'    => array('en' => 'We use only the cookies needed for this website to work. Third-party services like Google Maps and Calendly may also set cookies.', 'es' => 'Usamos solo las cookies necesarias para que este sitio funcione. Servicios externos como Google Maps y Calendly también pueden usar cookies.'),
+  'cookie.privacy' => array('en' => 'Privacy Policy', 'es' => 'Política de privacidad'),
+  'cookie.accept'  => array('en' => 'Accept', 'es' => 'Aceptar'),
+  'cookie.decline' => array('en' => 'Decline', 'es' => 'Rechazar'),
 
   'chat.title'    => array('en' => 'Need help getting started?', 'es' => '¿Necesita ayuda para comenzar?'),
   'chat.greeting' => array('en' => 'Hi! How can we help you today?', 'es' => '¡Hola! ¿En qué podemos ayudarle hoy?'),
