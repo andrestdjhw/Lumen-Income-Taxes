@@ -391,6 +391,11 @@
   color: rgb(255 255 255 / 0.85);
 }
 
+/* Distintivo flotante de reCAPTCHA oculto (taparía el chatbot); el aviso obligatorio va bajo cada formulario. */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 /* Navbar sticky. Para ocultar el topbar se desplaza hacia arriba (top negativo) en vez de cambiar de alto,
    así el contenido no se mueve al hacer scroll (--topbar-offset lo define Navbar.js).
    --admin-bar deja espacio para la barra de administración de WordPress. */

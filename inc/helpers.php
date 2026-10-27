@@ -205,7 +205,13 @@ function lumen_js_data() {
       'seal'     => get_theme_file_uri('/assets/brand/seal.png'),
       'symbol'   => get_theme_file_uri('/assets/brand/symbol.png'),
     ),
-    'rest'       => array('contact' => rest_url('lumen/v1/contact')),
+    'emailjs'    => array(
+      'serviceId'    => $site['emailjs']['service_id'],
+      'templateId'   => $site['emailjs']['template_id'],
+      'autoReplyTemplateId' => $site['emailjs']['autoreply_template_id'] ?? '',
+      'publicKey'    => $site['emailjs']['public_key'],
+      'recaptchaKey' => $site['recaptcha_site_key'],
+    ),
     'year'       => (int) date('Y'),
   );
 }

@@ -1,11 +1,26 @@
 import React, { useId, useState } from "react"
 import data, { hasString, t } from "../lib/data"
 import Icon from "./Icon"
+import { autoReplyParams, loadRecaptcha, sendLead } from "../lib/emailjs"
 
 // Formulario corto del brief (sección 09). No pedir SSN, W-2, datos bancarios ni archivos adjuntos.
 // Props (desde data-* en PHP): interest (valor preseleccionado), variant ("compact" para el hero), source (origen del lead).
 const interests = ["individual", "business", "irs", "other"]
 const contactTimes = ["any", "morning", "afternoon"]
+
+// Etiquetas en inglés para el correo que recibe el equipo (independientes del idioma de la página).
+const interestLabels = { individual: "Individual Taxes", business: "Business Taxes", irs: "IRS Notice", other: "Other" }
+const contactTimeLabels = { any: "Any time", morning: "Morning", afternoon: "Afternoon" }
+
+// Validación en el navegador (EmailJS no tiene servidor propio que valide). Devuelve la clave del error o "".
+function validate(values) {
+  if (!values.name.trim() || !values.phone.trim()) return "required"
+  if (values.phone.replace(/\D/g, "").length < 10) return "invalid_phone"
+  if (values.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) return "invalid_email"
+  if (!values.consent) return "consent"
+  if (/\b\d{3}[-\s]?\d{2}[-\s]?\d{4}\b/.test(values.message)) return "sensitive" // parece un número de Seguro Social
+  return ""
+}
 const inputClass = "mt-1 block w-full rounded-md border border-ink/20 bg-white px-3 py-2 short:py-1.5 text-sm text-ink shadow-sm transition focus:border-cianotipo focus:ring-2 focus:ring-cianotipo/20 focus:outline-none"
 const labelClass = "block text-sm font-medium text-lumen"
 
@@ -61,13 +76,29 @@ function ContactForm({ interest, variant, source = "contact" }) {
     setError("")
 
     try {
-      const response = await fetch(data.rest.contact, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values)
+      // Honeypot: un bot llenó el campo oculto; se simula éxito sin enviar nada.
+      if (values.website) {
+        setStatus("success")
+        return
+      }
+      const invalid = validate(values)
+      if (invalid) throw new Error(invalid)
+
+      const email = values.email.trim()
+      await sendLead({
+        name: values.name.trim(),
+        phone: values.phone.trim(),
+        email: email || "—",
+        reply_to: email,
+        language: values.language === "es" ? "Spanish" : "English",
+        interest: interestLabels[values.interest] || "Other",
+        contact_time: contactTimeLabels[values.contact_time] || "Any time",
+        message: values.message.trim().slice(0, 1000) || "—",
+        form: source,
+        page: window.location.href,
+        // Textos de la confirmación al cliente (Auto-Reply nativo de EmailJS, ver src/lib/emailjs.js).
+        ...autoReplyParams({ name: values.name.trim(), language: values.language, interest: values.interest, contactTime: values.contact_time })
       })
-      const result = await response.json().catch(() => ({}))
-      if (!response.ok || !result.success) throw new Error(result.code || "generic")
 
       setStatus("success")
       ;(window.dataLayer = window.dataLayer || []).push({ event: "form_submit_success", form: source })
@@ -91,7 +122,7 @@ function ContactForm({ interest, variant, source = "contact" }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={compact ? "space-y-4 short:space-y-3" : "space-y-5"}>
+    <form onSubmit={handleSubmit} onFocus={() => loadRecaptcha().catch(() => {})} noValidate className={compact ? "space-y-4 short:space-y-3" : "space-y-5"}>
       <div className={`grid items-end sm:grid-cols-2 ${compact ? "gap-4 short:gap-3" : "gap-5"}`}>
         <div>
           <label htmlFor={`${id}-name`} className={labelClass}>
@@ -181,6 +212,19 @@ function ContactForm({ interest, variant, source = "contact" }) {
         <input type="checkbox" name="consent" required checked={values.consent} onChange={update} className="mt-0.5 h-4 w-4 shrink-0 accent-cianotipo" />
         <span>{t("form.consent")}</span>
       </label>
+
+      {/* Aviso que Google exige al ocultar el distintivo flotante de reCAPTCHA (.grecaptcha-badge en src/index.css). */}
+      <p className="text-[0.7rem] text-ink/55">
+        {t("form.recaptcha")}{" "}
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-cianotipo">
+          {t("form.recaptcha_privacy")}
+        </a>{" "}
+        {t("form.recaptcha_and")}{" "}
+        <a href="https://policies.google.com/terms" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-cianotipo">
+          {t("form.recaptcha_terms")}
+        </a>
+        .
+      </p>
 
       <div aria-live="polite">{status === "error" && <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}</div>
 

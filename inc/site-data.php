@@ -15,6 +15,14 @@ function lumen_site() {
     'region'             => 'TX',
     'postal_code'        => '78217',
     'booking_url'        => 'https://calendly.com/lumenincometax',
+    // Envío de leads (src/lib/emailjs.js). Son claves públicas: la Secret Key de reCAPTCHA va solo en el panel de EmailJS.
+    'emailjs'            => array(
+      'service_id'  => 'service_523rubi',
+      'template_id' => 'template_72ad1mu',
+      'autoreply_template_id' => 'template_4zpp3uc', // Confirmación al cliente (solo si dejó correo).
+      'public_key'  => 'lmbhOyXW_Fu6YB1Jv',
+    ),
+    'recaptcha_site_key' => '6LdDbwMuAAAAAJgztWMRRCzdKYyL0_C55ygcZCOd',
     'google_reviews_url' => '', // Pendiente: perfil oficial de Google Business verificado.
     // Redes del topbar y el footer. Las que no tienen URL se muestran como ícono sin enlace.
     'social'             => array(

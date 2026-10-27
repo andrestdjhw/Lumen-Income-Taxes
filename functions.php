@@ -3,7 +3,6 @@
 require_once get_theme_file_path('/inc/site-data.php');
 require_once get_theme_file_path('/inc/i18n.php');
 require_once get_theme_file_path('/inc/helpers.php');
-require_once get_theme_file_path('/inc/contact-form.php');
 require_once get_theme_file_path('/inc/seo.php');
 
 function lumen_load_assets() {
